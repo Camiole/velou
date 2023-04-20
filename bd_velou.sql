@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `location`;
 CREATE TABLE IF NOT EXISTS `location` (
-  `ID_location` int(11) NOT NULL,
+  `ID_location` int(11) AUTO_INCREMENT,
   `Debut` datetime(6) NOT NULL,
   `Fin` datetime(6) NOT NULL,
   `ID_velo` int(11) NOT NULL,
@@ -45,8 +45,8 @@ CREATE TABLE IF NOT EXISTS `location` (
 
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `ID_utilisateur` int(11) NOT NULL,
-  `Username` varchar(15) NOT NULL,
+  `ID_utilisateur` int(11) AUTO_INCREMENT,
+  `Username` varchar(15) UNIQUE,
   `Password` varchar(20) NOT NULL,
   `Admin` int(11) NOT NULL,
   PRIMARY KEY (`ID_utilisateur`)
@@ -56,12 +56,12 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`ID_utilisateur`, `Username`, `Password`, `Admin`) VALUES
-(1, 'admin', 'admin', 1),
-(2, 'louis', 'siuol', 0),
-(3, 'camille', 'ellimac', 0),
-(4, 'clement', 'tnemelc', 0),
-(5, 'silvia', 'aivlis', 0);
+INSERT INTO `utilisateur` (`Username`, `Password`, `Admin`) VALUES
+('admin', 'admin', 1),
+('louis', 'siuol', 0),
+('camille', 'ellimac', 0),
+('clement', 'tnemelc', 0),
+('silvia', 'aivlis', 0);
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ INSERT INTO `utilisateur` (`ID_utilisateur`, `Username`, `Password`, `Admin`) VA
 
 DROP TABLE IF EXISTS `velo`;
 CREATE TABLE IF NOT EXISTS `velo` (
-  `ID_velo` int(11) NOT NULL,
+  `ID_velo` int(11) AUTO_INCREMENT,
   `Modele` varchar(20) NOT NULL,
   `Tarif` int(11) NOT NULL,
   `Image` varchar(50) NOT NULL,
@@ -82,10 +82,10 @@ CREATE TABLE IF NOT EXISTS `velo` (
 -- Déchargement des données de la table `velo`
 --
 
-INSERT INTO `velo` (`ID_velo`, `Modele`, `Tarif`, `Image`) VALUES
-(1, 'vtt', 10, '/images/velo1.jpg'),
-(2, 'ville', 15, '/images/velo2.jpg'),
-(3, 'cargo', 20, '/images/velo3.jpg');
+INSERT INTO `velo` (`Modele`, `Tarif`, `Image`) VALUES
+('vtt', 10, '/images/velo1.jpg'),
+('ville', 15, '/images/velo2.jpg'),
+('cargo', 20, '/images/velo3.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
