@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `location`;
 CREATE TABLE IF NOT EXISTS `location` (
   `ID_location` int(11) AUTO_INCREMENT,
-  `Debut` datetime(6) NOT NULL,
-  `Fin` datetime(6) NOT NULL,
+  `Debut` datetime NOT NULL,
+  `Fin` datetime NOT NULL,
   `ID_velo` int(11) NOT NULL,
   PRIMARY KEY (`ID_location`),
   KEY `ID_velo` (`ID_velo`)
@@ -85,7 +85,8 @@ CREATE TABLE IF NOT EXISTS `velo` (
 INSERT INTO `velo` (`Modele`, `Tarif`, `Image`) VALUES
 ('vtt', 10, '/images/velo1.jpg'),
 ('ville', 15, '/images/velo2.jpg'),
-('cargo', 20, '/images/velo3.jpg');
+('cargo', 20, '/images/velo3.jpg'),
+('gravel', 20, '/images/velo4.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
