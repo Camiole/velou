@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
@@ -5,12 +8,17 @@
 <body>
 <?php
 include 'bd_access.php';
-session_start();
+// Définit le fuseau horaire par défaut à utiliser.
+date_default_timezone_set('Europe/Paris');
+// On demande la date/heure
+$date = date('Y-m-d H:i:s');
 echo "Bonjour " . $_SESSION['username'];
 echo "<br />";
-// On demande la liste des velo disponible a la location
-$velodispo = $bdd->prepare('SELECT * FROM velo WHERE ID_velo NOT IN(SELECT ID_velo FROM location)');
-$velodispo->execute();
+// On demande la liste des velo disponible a la location ou la fin est superieur a la date/heure actuelle
+$velodispo = $bdd->prepare('SELECT * FROM velo WHERE ID_velo NOT IN(SELECT ID_velo FROM location WHERE Fin > :date)');
+$velodispo->execute (array(
+    'date' => $date
+));
 ?>
 <table>
 <tr>
@@ -37,7 +45,7 @@ echo       "<td style=\"text-align: center; background-color: #f5f5f5;\"><img sr
 echo       "</td>";
 echo     "</tr>";
 echo     "<tr>";
-echo       "<td style=\"text-align: center; background-color: #f5f5f5;\"><form action=\"reservation.php\" method=\"post\"><button name=\"foo\" value=\"upvote\">Reserver</button></form>";
+echo       "<td style=\"text-align: center; background-color: #f5f5f5;\"><form action=\"book.php\" method=\"post\"><input type=\"number\" id=\"duree\" name=\"duree\" value=\"1\" size=\"2\" min=\"1\" max=\"5\"> heure(s) <button name=\"id_velo\" value=\"" . $row['ID_velo'] . "\">Reserver</button></form>";
 echo       "</td>";
 echo     "</tr>";
 echo   "</tbody>";
