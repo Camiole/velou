@@ -16,17 +16,14 @@ $date = date('Y-m-d H:i:s');
 echo "Bonjour " . $_SESSION['username'];
 echo "<br />";
 // On demande la liste des velo disponible a la location ou la fin est superieur a la date/heure actuelle
-$velodispo = $bdd->prepare('SELECT * FROM velo WHERE ID_velo NOT IN(SELECT ID_velo FROM location WHERE Fin > :date)');
+$velodispo = $bdd->prepare('SELECT Fin, Modele, Image FROM location INNER JOIN velo ON velo.ID_velo=location.ID_velo WHERE Fin > :date');
 $velodispo->execute (array(
     'date' => $date
 ));
-if ( isset($_GET['error']) && $_GET['error'] == true) {
-echo "<div class=\"error\">Erreur lors de la réservation</div>";
-}
 ?>
 <table>
 <tr>
-<td colspan="2">Velo disponible a la location</td>
+<td colspan="2">Velo actuellement en location</td>
 </tr>
 <tr>
 <td>
@@ -41,15 +38,11 @@ echo       "</td>";
 echo     "</tr>";
 echo     "<tr>";
 echo       "<td style=\"text-align: center; background-color: #efedee;\">
-                <div class=\"circle\"><strong>" . $row['Tarif'] . "</strong>  <sup>eur</sup><br>heure</div>";
+                <div class=\"circle\">Fin location: " . date("d-m-Y à H:i", strtotime($row['Fin'])) . "</div>";
 echo       "</td>";
 echo     "</tr>";
 echo     "<tr>";
 echo       "<td style=\"text-align: center; background-color: #f5f5f5;\"><img src=\"" . $row['Image'] . "\">";
-echo       "</td>";
-echo     "</tr>";
-echo     "<tr>";
-echo       "<td style=\"text-align: center; background-color: #f5f5f5;\"><form action=\"book.php\" method=\"post\"><input type=\"number\" id=\"duree\" name=\"duree\" value=\"1\" size=\"2\" min=\"1\" max=\"5\"> heure(s) <button name=\"id_velo\" value=\"" . $row['ID_velo'] . "\">Reserver</button></form>";
 echo       "</td>";
 echo     "</tr>";
 echo   "</tbody>";
