@@ -26,7 +26,7 @@ if (!$verifdispo->fetch()) {
         'duree_fin' => $duree_fin,
         'id_velo' => $id_velo
     ));
-    header('Location: current_rental.php');
+    header('Location: current_rental.php?reserv=true');
 }
 else {
     header('Location: rental.php?error=true');

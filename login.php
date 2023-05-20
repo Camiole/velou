@@ -19,7 +19,7 @@ if ($row = $verifinfo->fetch()) {
     exit;
 }
 else {
-    header('Location: login.html');
+    header('Location: index.html');
     exit;
 }
 ?>
