@@ -6,7 +6,7 @@ $password = $_POST['password'];
 
 // On verfie si les entrees POST correspondent a celles de la BDD
 $verifinfo = $bdd->prepare('SELECT username, password, admin FROM utilisateur WHERE username = :username AND password = :password');
-$verifinfo->execute (array(
+$verifinfo->execute(array(
     'username' => $username,
     'password' => $password
 ));
@@ -17,8 +17,7 @@ if ($row = $verifinfo->fetch()) {
     $_SESSION['username'] = $row['username']; // sauvegarde du nom de l'utilisaeur dans une session
     header('Location: rental.php');
     exit;
-}
-else {
+} else {
     header('Location: index.html');
     exit;
 }

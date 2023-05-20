@@ -9,10 +9,18 @@ $element_admin_menu = array(
 );
 ?>
 
-<ul style="list-style-type:none;">
-  <?php foreach($element_menu as $label => $url): ?>
-    <li style="display:inline-block;margin-right:10px;">
-      <a href="<?php echo $url; ?>"><?php echo $label; ?></a>
-    </li>
-  <?php endforeach; ?>
-</ul>
+<nav>
+    <ul style="list-style-type:none;">
+        <li>
+          Bonjour <?php echo $_SESSION['username']; ?>
+        </li>
+    </ul>
+    
+    <ul style="list-style-type:none;">
+      <?php foreach($element_menu as $label => $url): ?>
+        <li style="display:inline-block;margin-right:10px;">
+          <a href="<?php echo $url; ?>"><?php echo $label; ?></a>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+</nav>
