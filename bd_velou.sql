@@ -83,10 +83,10 @@ CREATE TABLE IF NOT EXISTS `velo` (
 --
 
 INSERT INTO `velo` (`Modele`, `Tarif`, `Image`) VALUES
-('vtt', 10, '/images/velo1.jpg'),
-('ville', 15, '/images/velo2.jpg'),
-('cargo', 20, '/images/velo3.jpg'),
-('gravel', 20, '/images/velo4.jpg');
+('vtt', 10, './images/velo1.jpg'),
+('ville', 15, './images/velo2.jpg'),
+('cargo', 20, './images/velo3.jpg'),
+('gravel', 20, './images/velo4.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
